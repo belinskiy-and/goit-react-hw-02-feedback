@@ -14,20 +14,13 @@ export class App extends Component {
   }
 
   // Methods
-  addGoodState = () =>
-    this.setState(state => ({
-      good: ++state.good
-    }));
-
-  addNeutraltate = () => 
-    this.setState(state => ({
-      neutral: ++state.neutral
-    }));
-  
-  addBadState = () => 
-    this.setState(state => ({
-      bad: ++state.bad
-    }));
+  handleChangeFeedback = e => {    
+    const { name } = e.target; 
+    
+    this.setState(prevState => {
+      return {[name]: prevState[name]+1}
+    });   
+  }
 
     countTotalFeedback = () => 
       this.state.good + this.state.neutral + this.state.bad;
@@ -53,10 +46,9 @@ export class App extends Component {
     return(
       <Box p={4} as="main">
         <Section title="Please leave feedback">
-          <FeedbackOptions           
-            onGoodChange={this.addGoodState}
-            onNeutralChange={this.addNeutraltate}
-            onBadChange={this.addBadState}          
+          <FeedbackOptions
+            options={['good', 'neutral', 'bad']}
+            onChange={this.handleChangeFeedback}          
           />
         </Section> 
 

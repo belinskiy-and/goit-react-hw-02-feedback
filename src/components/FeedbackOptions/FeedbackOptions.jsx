@@ -1,15 +1,17 @@
+import PropTypes from  'prop-types';
 import { Button } from "./FeedbackOptions.styled";
 
 
-const FeedbackOptions  = ({ title, onGoodChange, onNeutralChange, onBadChange }) => {
+const FeedbackOptions  = ({ options, onChange }) => {
     return(
-        <div>
-            <h1>{title}</h1>
-            <Button type="button" onClick={() => onGoodChange()}>Good</Button> 
-            <Button type="button" onClick={() => onNeutralChange()}>Neutral</Button> 
-            <Button type="button" onClick={() => onBadChange()}>Bad</Button> 
-        </div>
+        options.map(option => 
+            <Button key={option} type="button" name={option} onClick={onChange}>{option}</Button>
+        )
     );
 }
 
 export default FeedbackOptions;
+
+FeedbackOptions.propTypes = {
+    options: PropTypes.array,    
+}

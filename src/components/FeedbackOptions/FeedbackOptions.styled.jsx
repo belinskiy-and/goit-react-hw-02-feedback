@@ -10,6 +10,7 @@ export const Button = styled.button`
     min-width: 100px;
     height: 35px;
     cursor: pointer;
+    text-transform: capitalize;
 
     &:not(:last-child) {
         margin-right: ${p => p.theme.space[3]}px;
